@@ -1,6 +1,7 @@
 const letterBtn = document.getElementById('criar-carta');
 const input = document.getElementById('carta-texto');
 const p = document.querySelector('p');
+const letterResult = document.getElementById('letter-result');
 
 const verifyInput = () => {
   if (input.value === '') {
@@ -22,16 +23,20 @@ const sizeGroup = 'medium, big, reallybig'.split(', ');
 const rotationGroup = 'rotateleft, rotateright'.split(', ');
 const inclinationGroup = 'skewleft, skewright'.split(', ');
 
-const arrayofClasses = [styleGroup, sizeGroup, rotationGroup, inclinationGroup];
-
 const generateRandomClass = (array) => {
   const randomIndex = Math.floor(Math.random() * array.length);
-  const rIContent = array[randomIndex];
-  const randomIndex2 = Math.floor(Math.random() * rIContent.length);
-  if (array[randomIndex][randomIndex2].length > 1) {
-    return array[randomIndex][randomIndex2];
-  }
   return array[randomIndex];
+};
+
+const countWords = (number) => {
+  const latestpCounter = document.getElementById('carta-contador');
+  if (latestpCounter) {
+    latestpCounter.remove();
+  }
+  const pCounter = document.createElement('p');
+  pCounter.innerHTML = number;
+  pCounter.id = 'carta-contador';
+  letterResult.appendChild(pCounter);
 };
 
 letterBtn.addEventListener('click', () => {
@@ -49,6 +54,7 @@ letterBtn.addEventListener('click', () => {
       span.classList.add(generateRandomClass(inclinationGroup));
       p.appendChild(span);
     }
+    countWords(inputTextArray.length);
   }
 });
 
