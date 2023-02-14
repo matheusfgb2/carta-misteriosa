@@ -17,6 +17,20 @@ const verifyInput = () => {
   return false;
 };
 
+const styleGroup = 'newspaper, magazine1, magazine2'.split(', ');
+const sizeGroup = 'medium, big, reallybig'.split(', ');
+const rotationGroup = 'rotateleft, rotateright'.split(', ');
+const inclinationGroup = 'skewleft, skewright'.split(', ');
+
+const arrayofClasses = [styleGroup, sizeGroup, rotationGroup, inclinationGroup];
+
+const generateRandomClass = (array) => {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  const rIContent = array[randomIndex];
+  const randomIndex2 = Math.floor(Math.random() * rIContent.length);
+  return array[randomIndex][randomIndex2];
+};
+
 letterBtn.addEventListener('click', () => {
   if (verifyInput()) {
     while (p.firstChild) {
@@ -26,6 +40,7 @@ letterBtn.addEventListener('click', () => {
     for (let i = 0; i < inputTextArray.length; i += 1) {
       const span = document.createElement('span');
       span.innerText = inputTextArray[i];
+      span.classList.add(generateRandomClass(arrayofClasses));
       p.appendChild(span);
     }
   }
