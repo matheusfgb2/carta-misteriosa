@@ -28,7 +28,10 @@ const generateRandomClass = (array) => {
   const randomIndex = Math.floor(Math.random() * array.length);
   const rIContent = array[randomIndex];
   const randomIndex2 = Math.floor(Math.random() * rIContent.length);
-  return array[randomIndex][randomIndex2];
+  if (array[randomIndex][randomIndex2].length > 1) {
+    return array[randomIndex][randomIndex2];
+  }
+  return array[randomIndex];
 };
 
 letterBtn.addEventListener('click', () => {
@@ -40,8 +43,22 @@ letterBtn.addEventListener('click', () => {
     for (let i = 0; i < inputTextArray.length; i += 1) {
       const span = document.createElement('span');
       span.innerText = inputTextArray[i];
-      span.classList.add(generateRandomClass(arrayofClasses));
+      span.classList.add(generateRandomClass(styleGroup));
+      span.classList.add(generateRandomClass(sizeGroup));
+      span.classList.add(generateRandomClass(rotationGroup));
+      span.classList.add(generateRandomClass(inclinationGroup));
       p.appendChild(span);
     }
+  }
+});
+
+p.addEventListener('click', (event) => {
+  if (event.target.id !== 'carta-gerada') {
+    const spanClass = event.target.classList;
+    spanClass.remove(...spanClass);
+    spanClass.add(generateRandomClass(styleGroup));
+    spanClass.add(generateRandomClass(sizeGroup));
+    spanClass.add(generateRandomClass(rotationGroup));
+    spanClass.add(generateRandomClass(inclinationGroup));
   }
 });
