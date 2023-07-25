@@ -34,7 +34,7 @@ const countWords = (number) => {
     latestpCounter.remove();
   }
   const pCounter = document.createElement('p');
-  pCounter.innerHTML = number;
+  pCounter.innerHTML = `Palavras geradas: ${number}`;
   pCounter.id = 'carta-contador';
   letterResult.appendChild(pCounter);
 };
